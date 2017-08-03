@@ -11,29 +11,23 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;  
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;  
   
+import com.alibaba.fastjson.JSON; 
 import com.yisanji.pojo.User;
 import com.yisanji.service.UserService;
   
-@RunWith(SpringJUnit4ClassRunner.class)     //表示继承了SpringJUnit4ClassRunner类  
-@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})  
+@RunWith(SpringJUnit4ClassRunner.class)     
+@ContextConfiguration(locations = {"classpath:spring/spring-dao.xml","classpath:spring/spring-service.xml"})  
   
 public class TestSm {  
     private static Logger logger = Logger.getLogger(TestSm.class);  
-//  private ApplicationContext ac = null;  
     @Resource  
-    private UserService userService = null;  
+    private UserService userService;  
   
-//  @Before  
-//  public void before() {  
-//      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
-//      userService = (IUserService) ac.getBean("userService");  
-//  }  
   
     @Test  
     public void test1() {  
-        User user = userService.getUserById(1);  
+        User user = userService.getUserById(0);  
         // System.out.println(user.getUserName());  
-        // logger.info("值："+user.getUserName());  
-        logger.info(user);  
+        logger.info(JSON.toJSON(user));  
     }  
 }  
