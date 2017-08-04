@@ -1,5 +1,7 @@
 package sm.test;
 
+import java.util.List;
+
 import javax.annotation.Resource;  
   
 import org.apache.log4j.Logger;  
@@ -11,9 +13,9 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;  
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;  
   
-import com.alibaba.fastjson.JSON; 
-import com.yisanji.pojo.User;
-import com.yisanji.service.UserService;
+import com.alibaba.fastjson.JSON;
+import com.yisanji.pojo.Order;
+import com.yisanji.service.OrderService;
   
 @RunWith(SpringJUnit4ClassRunner.class)     
 @ContextConfiguration(locations = {"classpath:spring/spring-dao.xml","classpath:spring/spring-service.xml"})  
@@ -21,13 +23,15 @@ import com.yisanji.service.UserService;
 public class TestSm {  
     private static Logger logger = Logger.getLogger(TestSm.class);  
     @Resource  
-    private UserService userService;  
+    private OrderService orderService;  
   
   
     @Test  
     public void test1() {  
-        User user = userService.getUserById(0);  
-        // System.out.println(user.getUserName());  
-        logger.info(JSON.toJSON(user));  
+        List<Order> or = orderService.getOrderByStatus("payed");
+        for(Order o : or) {
+        	System.out.print(o.getOutTime());
+        }
+//        logger.info(JSON.toJSON(or));  
     }  
 }  
