@@ -3,41 +3,51 @@ package com.yisanji.pojo;
 public class User {
     private Integer id;
 
-    private String username;
+	private String username;
 
-    private String password;
+	private String password;
 
-    private String information;
+	private String tel;
 
-    public Integer getId() {
-        return id;
-    }
+	private String information;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUsername(String username) {
+		this.username = username == null ? null : username.trim();
+	}
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getInformation() {
-        return information;
-    }
+	public void setPassword(String password) {
+		this.password = password == null ? null : password.trim();
+	}
 
-    public void setInformation(String information) {
-        this.information = information == null ? null : information.trim();
-    }
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel == null ? null : tel.trim();
+	}
+
+	public String getInformation() {
+		return information;
+	}
+
+	public void setInformation(String information) {
+		this.information = information == null ? null : information.trim();
+	}
 }

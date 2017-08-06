@@ -22,14 +22,14 @@ public class OrderController {
     @Resource  
     private OrderService os;
       
-    @RequestMapping(value="", method = RequestMethod.GET)
+    @RequestMapping(value="", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     public String showOrder(HttpServletRequest request) {
     	String status = request.getParameter("status");
     	List<Order> order = os.getOrderByStatus(status);
     	return JSON.toJSONString(order);
     }
     
-    @RequestMapping(value="", method = RequestMethod.POST)
+    @RequestMapping(value="", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     // 使用spring mvc 直接生成bean
     public String updateOrder(Order or) {
     	if (os.insertOrder(or))

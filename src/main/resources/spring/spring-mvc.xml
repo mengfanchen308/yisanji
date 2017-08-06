@@ -13,14 +13,7 @@
     <context:component-scan base-package="com.yisanji.controller"/>  
     
     <mvc:default-servlet-handler/>
-    <mvc:annotation-driven>  
-        <!-- 消息转换器,解决responseBody返回中外乱码问题 -->  
-        <mvc:message-converters register-defaults="true">  
-            <bean class="org.springframework.http.converter.StringHttpMessageConverter">  
-                <property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />  
-            </bean>  
-        </mvc:message-converters>  
-    </mvc:annotation-driven>  
+    <mvc:annotation-driven/>   
     
     <!-- 配置js,css等静态文件直接映射到对应的文件夹，不被DispatcherServlet处理 -->
     <mvc:resources location="/WEB-INF/resources/**" mapping="/resources" />

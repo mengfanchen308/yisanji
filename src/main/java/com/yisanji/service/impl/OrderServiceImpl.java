@@ -33,8 +33,9 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public boolean insertOrder(Order or) {
 		try {
-			om.insertSelective(or);
-			return true;
+			if (or.getStatus()!=null)
+				om.insertSelective(or);
+				return true;
 		}
 		catch (Exception e){
 			LOGGER.info(e.toString());

@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.yisanji.pojo.Order" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="in_time" property="inTime" jdbcType="TIMESTAMP" />
@@ -12,31 +13,31 @@
     <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, tel, address, status, in_time, finish_time, out_time, pay_time
+    id, tel, area, address, status, in_time, finish_time, out_time, pay_time
   </sql>
+  <select id="selectByStatus" resultType="com.yisanji.pojo.Order" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" /> from delivery where status = #{status,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from delivery
     where id = #{id,jdbcType=VARCHAR}
   </select>
-  <select id="selectByStatus" resultType="com.yisanji.pojo.Order" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from delivery
-    where status = #{status,jdbcType=VARCHAR}
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from delivery
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.yisanji.pojo.Order" >
-    insert into delivery (id, tel, address, 
-      status, in_time, finish_time, 
-      out_time, pay_time)
-    values (#{id,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{inTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
-      #{outTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP})
+    insert into delivery (id, tel, area, 
+      address, status, in_time, 
+      finish_time, out_time, pay_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{inTime,jdbcType=TIMESTAMP}, 
+      #{finishTime,jdbcType=TIMESTAMP}, #{outTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yisanji.pojo.Order" >
     insert into delivery
@@ -46,6 +47,9 @@
       </if>
       <if test="tel != null" >
         tel,
+      </if>
+      <if test="area != null" >
+        area,
       </if>
       <if test="address != null" >
         address,
@@ -73,6 +77,9 @@
       <if test="tel != null" >
         #{tel,jdbcType=VARCHAR},
       </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
@@ -99,6 +106,9 @@
       <if test="tel != null" >
         tel = #{tel,jdbcType=VARCHAR},
       </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
@@ -123,6 +133,7 @@
   <update id="updateByPrimaryKey" parameterType="com.yisanji.pojo.Order" >
     update delivery
     set tel = #{tel,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       in_time = #{inTime,jdbcType=TIMESTAMP},

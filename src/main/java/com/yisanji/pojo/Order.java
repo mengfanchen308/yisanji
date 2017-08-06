@@ -5,82 +5,91 @@ import java.util.Date;
 public class Order {
     private String id;
 
-	private String tel;
+    private String tel;
 
-	private String address;
+    private String area;
 
-	private String status;
+    private String address;
 
-	private String inTime;
+    private String status;
 
-	private String finishTime;
+    private Date inTime;
 
-	private String outTime;
+    private Date finishTime;
 
-	private String payTime;
+    private Date outTime;
 
-	public String getId() {
-		return id;
-	}
+    private Date payTime;
 
-	public void setId(String id) {
-		this.id = id == null ? null : id.trim();
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getTel() {
-		return tel;
-	}
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
+    }
 
-	public void setTel(String tel) {
-		this.tel = tel == null ? null : tel.trim();
-	}
+    public String getTel() {
+        return tel;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setTel(String tel) {
+        this.tel = tel == null ? null : tel.trim();
+    }
 
-	public void setAddress(String address) {
-		this.address = address == null ? null : address.trim();
-	}
+    public String getArea() {
+        return area;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setArea(String area) {
+        this.area = area == null ? null : area.trim();
+    }
 
-	public void setStatus(String status) {
-		this.status = status == null ? null : status.trim();
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public  String getInTime() {
-		return inTime;
-	}
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
 
-	public void setInTime(String inTime) {
-		this.inTime = inTime;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getFinishTime() {
-		return finishTime;
-	}
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
 
-	public void setFinishTime(String finishTime) {
-		this.finishTime = finishTime;
-	}
+    public Date getInTime() {
+        return inTime;
+    }
 
-	public String getOutTime() {
-		return outTime;
-	}
+    public void setInTime(Date inTime) {
+        this.inTime = inTime;
+    }
 
-	public void setOutTime(String outTime) {
-		this.outTime = outTime;
-	}
+    public Date getFinishTime() {
+        return finishTime;
+    }
 
-	public String getPayTime() {
-		return payTime;
-	}
+    public void setFinishTime(Date finishTime) {
+        this.finishTime = finishTime;
+    }
 
-	public void setPayTime(String payTime) {
-		this.payTime = payTime;
-	}
+    public Date getOutTime() {
+        return outTime;
+    }
 
+    public void setOutTime(Date outTime) {
+        this.outTime = outTime;
+    }
+
+    public Date getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
 }
