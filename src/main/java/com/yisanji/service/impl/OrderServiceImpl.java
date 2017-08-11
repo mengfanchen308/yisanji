@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Service;
 
 import com.yisanji.dao.OrderMapper;
@@ -33,14 +35,18 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public boolean insertOrder(Order or) {
 		try {
-			if (or.getStatus()!=null)
-				om.insertSelective(or);
-				return true;
+			om.insertSelective(or);
+			return true;
 		}
-		catch (Exception e){
+		catch (DataIntegrityViolationException e){
+			LOGGER.info("Need some fields which don't hava default value");
+		}
+		catch (BadSqlGrammarException e) {
+			LOGGER.info("Null post can't generate order");
+		}
+		catch (Exception e) {
 			LOGGER.info(e.toString());
 		}
-		
 		return false;
 	}
 

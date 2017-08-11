@@ -13,6 +13,10 @@
 
       <!-- 下面的druid配置都是基本配置,具体优化设置可以上网查询,也可以去github上面直接搜索druid -->
       <!-- 2.数据库连接池 -->
+      <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+    	   <property name="resultSetLogEnabled" value="false" />
+    	   <property name="statementLogErrorEnabled" value="false"/>
+      </bean>
       <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
             init-method="init" destroy-method="close">
           <!-- 配置连接池属性 -->
@@ -55,9 +59,9 @@
           <property name="filters" value="stat" />
           <property name="proxyFilters">
               <list>
-                  <ref bean="logFilter" />
+                  <ref bean="log-filter"/>
               </list>
-          </property>
+    	  </property>
       </bean>
 
       <!-- 3.配置SqlSessionFactory对象 -->
@@ -78,8 +82,5 @@
           <property name="basePackage" value="com.yisanji.dao"/>
       </bean>
 
-      <!-- 上面的druid的配置 -->
-      <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
-          <property name="statementExecutableSqlLogEnable" value="false" />
-      </bean>
+      
   </beans>

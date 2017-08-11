@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import com.yisanji.dao.UserMapper;
 import com.yisanji.pojo.User;
@@ -28,12 +29,10 @@ public class UserServiceImpl implements UserService{
 	public boolean insertUser(User user) {
 		// TODO Auto-generated method stub
 		try {
-			if(user.getId() != null)
-				return false;
 			um.insertSelective(user);
 			return true;
 		}
-		catch (Exception e){
+		catch (DataIntegrityViolationException e){
 			LOGGER.info(e.toString());
 		}
 		
